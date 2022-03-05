@@ -14,15 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware('auth')->group(function (){
-    Route::get('/dashboard', [\App\Http\Controllers\HomeController::class,'home']);
+    Route::get('/home', [\App\Http\Controllers\HomeController::class,'index']);
     Route::get('user-profile', [\App\Http\Controllers\UserController::class ,'userProfile'])->name('user.profile');
     Route::get('send', [\App\Http\Controllers\TransactionControlller::class ,'send'])->name('transfer.send');
     Route::get('receive', [\App\Http\Controllers\TransactionControlller::class ,'receive'])->name('transfer.receive');

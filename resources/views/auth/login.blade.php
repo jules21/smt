@@ -40,13 +40,8 @@
     <!--end:: Global Mandatory Vendors -->
 
     <!--begin:: Global Optional Vendors -->
-
-    <link href="./assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
-    <link href="./assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
-    <link href="./assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
     <link href="./assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
     <link href="./assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
-    <link href="./assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
 
     <!--end:: Global Optional Vendors -->
 
@@ -95,11 +90,15 @@
                         </div>
 
                         <div class="kt-login__form">
-                            @if ($message = session()->has("ERROR"))
+                            @if ($errors->any())
                                 <div class="col-12">
                                     <div class="alert alert-danger fade show" role="alert">
                                         <div class="alert-icon"><i class="flaticon-warning"></i></div>
-                                        <div class="alert-text">{{session()->get("ERROR")}}</div>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
                                         <div class="alert-close">
                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                 <span aria-hidden="true"><i class="la la-close"></i></span>
@@ -123,31 +122,15 @@
                                             <span></span>
                                         </label>
                                     </div>
-                                    <div class="col kt-align-right">
-                                        <a href="javascript:;" id="kt_login_forgot" class="kt-link">Forget Password ?</a>
-                                    </div>
                                 </div>
                                 <div class="kt-login__actions">
                                     <button  type="submit" class="btn btn-brand btn-pill btn-elevate">Sign In</button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="kt-login__forgot">
-                        <div class="kt-login__head">
-                            <h3 class="kt-login__title">Forgotten Password ?</h3>
-                            <div class="kt-login__desc">Enter your email to reset your password:</div>
-                        </div>
-                        <div class="kt-login__form">
-                            <form class="kt-form" action="">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Email" name="email" id="kt_email" autocomplete="off">
+                                <div class="mt-10">
+                                    <span class="opacity-70 mr-4">Don't have an account yet?</span>
+                                    <a href="{{route('register')}}" id="kt_login_signup" class="kt-link font-weight-bold">Sign Up</a>
                                 </div>
-                                <div class="kt-login__actions">
-                                    <button id="kt_login_forgot_submit" class="btn btn-brand btn-pill btn-elevate">Request</button>
-                                    <button id="kt_login_forgot_cancel" class="btn btn-outline-brand btn-pill">Cancel</button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -186,30 +169,6 @@
 <script src="./assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
 <script src="./assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="./assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
-<script src="./assets/vendors/general/moment/min/moment.min.js" type="text/javascript"></script>
-<script src="./assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js" type="text/javascript"></script>
-<script src="./assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js" type="text/javascript"></script>
-<script src="./assets/vendors/general/sticky-js/dist/sticky.min.js" type="text/javascript"></script>
-<script src="./assets/vendors/general/wnumb/wNumb.js" type="text/javascript"></script>
-<script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
-@include('sweetalert::alert')
-
-<!--end:: Global Mandatory Vendors -->
-
-
-
-
-<!--end:: Global Optional Vendors -->
-
-<!--begin::Global Theme Bundle(used by all pages) -->
-<script src="{{asset('assets/js/demo1/scripts.bundle.js')}}" type="text/javascript"></script>
-
-<!--end::Global Theme Bundle -->
-
-<!--begin::Page Scripts(used by this page) -->
-<script src="{{asset('assets/js/demo1/pages/login/login-general.js')}}" type="text/javascript"></script>
-
 <!--end::Page Scripts -->
 </body>
 
