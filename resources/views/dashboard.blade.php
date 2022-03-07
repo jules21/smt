@@ -23,8 +23,7 @@
         </div>
         <div class="kt-subheader__toolbar">
             <div class="kt-subheader__wrapper">
-                <a href="{{ route('transfer.send') }}" class="btn kt-subheader__btn-primary btn-label-primary"><i class="fa fa-donate"></i>  Send</a>
-                <a href="{{ route('transfer.receive') }}" class="btn btn-label-primary btn-bold btn-icon-h kt-margin-l-10"><i class="fa fa-coins la-4x"></i>Receive</a>
+                <a href="{{ route('transactions.transfer') }}" class="btn kt-subheader__btn-primary btn-label-primary"><i class="fa fa-donate"></i>  Send</a>
             </div>
         </div>
     </div>
@@ -40,15 +39,14 @@
                         <div class="kt-widget24__details">
                             <div class="kt-widget24__info">
                                 <h4 class="kt-widget24__title">
-                                    Transactions
+                                    USD
                                 </h4>
                                 <span class="kt-widget24__desc">
-															Today total transaction
+															Today USD Dollar
 														</span>
                             </div>
                             <span class="kt-widget24__stats kt-font-brand">
-{{--                                                        {{$todayTransaction}}--}}
-                                1000
+                                                        {{auth()->user()->totalAmount('USD')}} $
 													</span>
                         </div>
                         <div class="progress progress--sm">
@@ -66,14 +64,14 @@
                         <div class="kt-widget24__details">
                             <div class="kt-widget24__info">
                                 <h4 class="kt-widget24__title">
-                                    Sent
+                                    GBP
                                 </h4>
                                 <span class="kt-widget24__desc">
-															Total Sent Money
+															Total Pound sterling
 														</span>
                             </div>
                             <span class="kt-widget24__stats kt-font-warning">
-{{--														{{$todayRemittance}} $--}}
+                                                        {{auth()->user()->totalAmount('GBP')}} £
 													</span>
                         </div>
                         <div class="progress progress--sm">
@@ -91,14 +89,14 @@
                         <div class="kt-widget24__details">
                             <div class="kt-widget24__info">
                                 <h4 class="kt-widget24__title">
-                                    Received
+                                    NGN
                                 </h4>
                                 <span class="kt-widget24__desc">
-                                    Total Received Money
+                                    Total Nigerian Naira
 														</span>
                             </div>
                             <span class="kt-widget24__stats kt-font-success">
-{{--														{{$todayPayment}} $--}}
+                                                        {{auth()->user()->totalAmount('NGN')}} ₦
 													</span>
                         </div>
                         <div class="progress progress--sm">
@@ -116,8 +114,10 @@
         <div class="kt-portlet__body  kt-portlet__body--fit">
             {{-- BEGIN  --}}
             <div class="row">
-                <div class="col-xl-8">
-
+                <div class="col-xl-12">
+                        <!--begin::Chart-->
+                        <div id="chart_12" class="d-flex justify-content-center"></div>
+                        <!--end::Chart-->
                 </div>
             </div>
         </div>
@@ -132,5 +132,49 @@
 
 @endsection
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <!--begin::Page Vendors(used by this page) -->
+    <script>
+        var monthlyData = {!! json_encode($monthlyTransactions) !!}
+
+
+            var options = {
+            series: [{
+                name: "Transactions",
+                data:Object.values(monthlyData)
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Transactions by Month',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: Object.keys(monthlyData),
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart_12"), options);
+        chart.render();
+
+
+
+    </script>
 @endsection

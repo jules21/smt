@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function  totalAmount($currency){
+        $user = \Auth::user();
+        $currency = Currency::query()->where('abbr', $currency)->first();
+        $received =  Transaction::query()
+            ->where('target_currency', $currency->id)
+            ->where('receiver_id', $user->id)
+            ->sum('amount');
+        $sent = Transaction::query()
+            ->where('source_currency', $currency->id)
+            ->where('sender_id', $user->id)
+            ->sum('amount');
+        return $received - $sent;
+    }
 }

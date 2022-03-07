@@ -111,11 +111,17 @@
                                         class="kt-menu__link-icon flaticon2-protection"></i><span
                                         class="kt-menu__link-text">Dashboard</span></a>
                         </li>
-                        <li class="{{Request::is('/') ?'kt-menu__item  kt-menu__item--active':'kt-menu__item'}}"
-                            aria-haspopup="true"><a href="/"
+                        <li class="{{Request::is('/transfer') ?'kt-menu__item  kt-menu__item--active':'kt-menu__item'}}"
+                            aria-haspopup="true"><a href="{{route('transactions.transfer')}}"
                                                     class="kt-menu__link "><i
                                         class="kt-menu__link-icon flaticon-paper-plane"></i><span
                                         class="kt-menu__link-text">Transfer</span></a>
+                        </li>
+                        <li class="{{Request::is('/transactions') ?'kt-menu__item  kt-menu__item--active':'kt-menu__item'}}"
+                            aria-haspopup="true"><a href="{{route('transactions.all')}}"
+                                                    class="kt-menu__link "><i
+                                        class="kt-menu__link-icon flaticon2-refresh"></i><span
+                                        class="kt-menu__link-text">Transactions</span></a>
                         </li>
 
 
@@ -248,7 +254,7 @@
             <!-- begin:: Footer -->
             <div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
                 <div class="kt-footer__copyright center d-flex justify-content-center">
-					<?= date( 'Y' ) ?>&nbsp;&copy;&nbsp;<a href="http://besoft.rw" target="_blank" class="kt-link">Simba
+					<?= date( 'Y' ) ?>&nbsp;&copy;&nbsp;<a href="#" target="_blank" class="kt-link">Simba
                         Money Transfer</a>
                 </div>
 
@@ -323,7 +329,6 @@
 
 <!--begin::Page Scripts(used by this page) -->
 
-<script src="{{asset('assets/js/demo6/pages/dashboard.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/vendors/custom/datatables/datatables.bundle.js')}}" type="text/javascript"></script>
 <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
 @yield('scripts')

@@ -79,8 +79,10 @@ class RegisterController extends Controller
     private function initialTransaction($user){
         $USDCurrency = Currency::query()->where('abbr', 'USD')->first();
         Transaction::create([
-            "sender_id" =>$user->id,
+            "receiver_id" =>$user->id,
+            "sender_id" =>null,
             "amount" =>1000,
+            "rate" =>1,
             "status"=>"Success",
             "comment"=>"Initial Transaction",
             "source_currency"=>$USDCurrency->id,

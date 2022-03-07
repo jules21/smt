@@ -19,10 +19,13 @@ Route::get('/login', function () {
 
 Auth::routes();
 Route::middleware('auth')->group(function (){
-    Route::get('/', [\App\Http\Controllers\HomeController::class,'index']);
+    Route::get('/', [\App\Http\Controllers\HomeController::class,'index'])->name('home');
     Route::get('user-profile', [\App\Http\Controllers\UserController::class ,'userProfile'])->name('user.profile');
-    Route::get('transfer', [\App\Http\Controllers\TransactionControlller::class ,'send'])->name('transfer.send');
-    Route::get('receive', [\App\Http\Controllers\TransactionControlller::class ,'receive'])->name('transfer.receive');
+    Route::get('transfer', [\App\Http\Controllers\TransactionController::class,'sendMoneyForm'])->name('transactions.transfer.form');
+    Route::post('transfer', [\App\Http\Controllers\TransactionController::class,'transfer'])->name('transactions.transfer');
+    Route::get('transactions', [\App\Http\Controllers\TransactionController::class ,'allTransactions'])->name('transactions.all');
+
+//    Route::get('check-account',[\App\Http\Controllers\TransactionController::class,'checkAccountAmount'])->name('transactions.check-account');
 
 
 });
