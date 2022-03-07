@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Currency;
+use App\Models\Transaction;
 use App\Providers\InitialTransaction;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -71,7 +73,18 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        event(new InitialTransaction($user));
+        $this->initialTransaction($user);
         return $user;
+    }
+    private function initialTransaction($user){
+        $USDCurrency = Currency::query()->where('abbr', 'USD')->first();
+        Transaction::create([
+            "sender_id" =>$user->id,
+            "amount" =>1000,
+            "status"=>"Success",
+            "comment"=>"Initial Transaction",
+            "source_currency"=>$USDCurrency->id,
+            "target_currency"=>$USDCurrency->id,
+        ]);
     }
 }

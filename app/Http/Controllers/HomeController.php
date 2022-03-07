@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $user = auth()->user();
+        $transactions = Transaction::query()
+            ->where('sender_id', $user->id)
+            ->OrWhere('receiver_id', $user->id)
+            ->get();
+        return view('dashboard', compact('transactions'));
     }
 }

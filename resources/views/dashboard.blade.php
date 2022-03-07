@@ -33,7 +33,7 @@
     <div class="kt-portlet">
         <div class="kt-portlet__body  kt-portlet__body--fit">
             <div class="row row-no-padding row-col-separator-xl">
-                <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="col-md-12 col-lg-4 col-xl-4">
 
                     <!--begin::Total Profit-->
                     <div class="kt-widget24">
@@ -59,7 +59,7 @@
 
                     <!--end::Total Profit-->
                 </div>
-                <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="col-md-12 col-lg-4 col-xl-4">
 
                     <!--begin::New Feedbacks-->
                     <div class="kt-widget24">
@@ -84,7 +84,7 @@
 
                     <!--end::New Feedbacks-->
                 </div>
-                <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="col-md-12 col-lg-4 col-xl-4">
 
                     <!--begin::New Feedbacks-->
                     <div class="kt-widget24">

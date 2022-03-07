@@ -114,7 +114,7 @@
                         <li class="{{Request::is('/') ?'kt-menu__item  kt-menu__item--active':'kt-menu__item'}}"
                             aria-haspopup="true"><a href="/"
                                                     class="kt-menu__link "><i
-                                        class="kt-menu__link-icon flaticon2-protection"></i><span
+                                        class="kt-menu__link-icon flaticon-paper-plane"></i><span
                                         class="kt-menu__link-text">Transfer</span></a>
                         </li>
 
@@ -209,10 +209,10 @@
                                 </a>
 
                                 <div class="kt-notification__custom kt-space-between">
-                                    <a href=""
+                                    <a href="#" onclick="event.preventDefault();document.getElementById('log-out').submit();"
                                        class="btn btn-label btn-label-brand btn-sm btn-bold">Log Out</a>
-
                                 </div>
+                                <form action="{{route('logout')}}" method="post" id="log-out" style="display: none">@csrf</form>
                             </div>
 
                             <!--end: Navigation -->
