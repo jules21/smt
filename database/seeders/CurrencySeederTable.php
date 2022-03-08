@@ -16,7 +16,7 @@ class CurrencySeederTable extends Seeder
     {
         $currencies = [
             ['name'=>'US Dollar','abbr'=>'USD'],
-            ['name'=>'European Euro','abbr'=>'EUR'],
+            ['name'=>'British pound sterling','abbr'=>'GBP'],
             ['name'=>'Nigerian Naira','abbr'=>'NGN'],
         ];
 
