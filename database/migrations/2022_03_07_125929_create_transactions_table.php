@@ -18,7 +18,8 @@ class CreateTransactionsTable extends Migration
             $table->unsignedBigInteger('sender_id')->nullable();
             $table->string('receiver_id')->nullable();
             $table->string('status')->default('pending');
-            $table->float('amount')->nullable();
+            $table->float('sent_amount')->nullable();
+            $table->float('received_amount')->nullable();
             $table->float('rate')->nullable();
             $table->longText('comment')->nullable();
             $table->unsignedBigInteger('source_currency')->nullable();

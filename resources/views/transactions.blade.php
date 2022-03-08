@@ -84,7 +84,7 @@
                                         <td class="sorting_1" tabindex="0">{{++$key}}</td>
                                         <td>{{optional($transaction->sender)->name ?? "-"}}</td>
                                         <td>{{optional($transaction->receiver)->name ?? "-"}}</td>
-                                        <td>{{$transaction->amount}}</td>
+                                        <td>{{optional($transaction->sender)->name != auth()->user()->id ? $transaction->received_amount : $transaction->sent_amount}}</td>
                                         <td>{{optional($transaction->targetCurrency)->abbr ?? "-"}}</td>
                                         <td class="text-center"> <span class="badge badge-{{$transaction->status == 'Success' ? 'success' : 'warning'}}">{{$transaction->status}}</span></td>
                                         <td>{{$transaction->comment}}</td>

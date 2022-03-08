@@ -81,7 +81,8 @@ class RegisterController extends Controller
         Transaction::create([
             "receiver_id" =>$user->id,
             "sender_id" =>null,
-            "amount" =>1000,
+            "sent_amount" =>1000,
+            "received_amount" =>1000,
             "rate" =>1,
             "status"=>"Success",
             "comment"=>"Initial Transaction",

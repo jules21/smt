@@ -68,9 +68,11 @@
                                 <select name="receiver" id="receiver" class="form-control">
                                     <option value="">--select--</option>
                                 @foreach($users ?? [] as $user)
-                                    <option value="{{$user->id}}">
-                                        {{$user->name}}
-                                         </option>
+                                  @if(auth()->user()->id != $user->id)
+                                        <option value="{{$user->id}}">
+                                            {{$user->name}}
+                                        </option>
+                                    @endif
                                 @endforeach
                                 </select>
                             </div>
