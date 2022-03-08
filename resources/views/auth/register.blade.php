@@ -117,10 +117,10 @@
                                     <form class="kt-form" action="{{route('register')}}" method="post" autocomplete="off">
                                         @csrf
                                         <div class="form-group">
-                                            <input class="form-control" type="name" placeholder="Name" name="name" >
+                                            <input class="form-control" type="name" placeholder="Name" name="name" value="{{old("name")}}" >
                                         </div>
                                         <div class="form-group">
-                                            <input class="form-control" type="email" placeholder="{{ __('Email Address') }}" name="email" >
+                                            <input class="form-control" type="email" placeholder="{{ __('Email Address') }}" name="email" value="{{old("email")}}" >
                                         </div>
                                         <div class="form-group">
                                             <input class="form-control" type="Password" placeholder="Password" name="password">

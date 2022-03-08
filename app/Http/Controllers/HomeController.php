@@ -31,7 +31,10 @@ class HomeController extends Controller
             ->get();
         $monthlyTransactions =[];
         for($i = 1; $i < 13; $i++) {
-            $monthlyTransactions[date('F', mktime(0, 0, 0, $i, 10))] = Transaction::whereMonth('created_at', $i)->count();
+            $monthlyTransactions[date('F', mktime(0, 0, 0, $i, 10))] = Transaction::query()
+            ->where('sender_id', $user->id)
+            ->OrWhere('receiver_id', $user->id)
+            ->whereMonth('created_at', $i)->count();
         }
         return view('dashboard', compact('transactions','monthlyTransactions'));
     }
