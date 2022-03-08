@@ -47,10 +47,12 @@ class User extends Authenticatable
         $received =  Transaction::query()
             ->where('target_currency', $currency->id)
             ->where('receiver_id', $user->id)
+            ->where('status', '!=','Failed')
             ->sum('received_amount');
         $sent = Transaction::query()
             ->where('source_currency', $currency->id)
             ->where('sender_id', $user->id)
+            ->where('status', '!=','Failed')
             ->sum('sent_amount');
         return $received - $sent;
     }

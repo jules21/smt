@@ -26,7 +26,7 @@ class TransactionController extends Controller
             $reason = 'No enough found to make this transaction!';
             $this->createTransaction($user, $request->merge(['comment'=>$reason]), 'Failed');
         }
-        return redirect()->route('home');
+        return redirect()->route('transactions.all');
     }
     function createTransaction($user, Request $request, $status){
         Transaction::create([
